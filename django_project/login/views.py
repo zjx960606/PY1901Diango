@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import BookInfo
+from django.http import HttpResponseRedirect,HttpResponse
+from .models import BookInfo, HeroInfo
 from django.template import loader
 
 # Create your views here.
@@ -38,3 +38,35 @@ def detail(request,id):
 #     #     return HttpResponse('请输入正确id')
     book = BookInfo.objects.get(pk=id)
     return render(request, 'tempdemo/detail.html', {"book":book})
+
+def delete(request, id):
+    try:
+        BookInfo.objects.get(pk=id).delete()
+        book = BookInfo.objects.all()
+        return render(request, 'tempdemo/list.html', {'book': book})
+    except:
+        return HttpResponse('删除失败')
+
+def addhero(request, bookid):
+    # book = BookInfo.objects.get(pk=id)
+    # HeroInfo.objects.get()
+    return render(request,'tempdemo/addhero.html', {'bookid':bookid})
+
+
+def addherohand(request):
+    bookid =request.POST['bookid']
+    hname = request.POST['hname']
+    hgender = request.POST['sex']
+    hcontent = request.POST['hcontent']
+    print(hname,hgender,hcontent,bookid)
+
+    book = BookInfo.objects.get(pk=bookid)
+    hero = HeroInfo()
+    hero.hname = hname
+    hero.hgender = True
+    hero.hcontent = hcontent
+    hero.hbook = book
+    hero.save()
+    return HttpResponseRedirect('/detail/'+str(bookid)+'/', {'book':book})
+
+
