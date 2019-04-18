@@ -12,13 +12,6 @@ from django.template import loader
 
 def index(request):
 
-    # index1= loader.get_template('tempdemo/index.html')
-    #
-    # cont = {'username':'zjx'}
-    # # 使用变量参数渲染模板
-    # result = index1.render(cont)
-    # # 返回模板
-    # return HttpResponse(result)
     return render(request, 'tempdemo/index.html', {'username': 'zjx'})
 
 
@@ -30,12 +23,6 @@ def list(request):
 
 
 def detail(request,id):
-    # print(id)
-#     # try:
-#     #     book = BookInfo.objects.get(pk=int(id))
-#     #     return HttpResponse(book)
-#     # except:
-#     #     return HttpResponse('请输入正确id')
     book = BookInfo.objects.get(pk=id)
     return render(request, 'tempdemo/detail.html', {"book":book})
 
@@ -69,4 +56,11 @@ def addherohand(request):
     hero.save()
     return HttpResponseRedirect('/detail/'+str(bookid)+'/', {'book':book})
 
+def deletehero(request, id):
+    try:
+        book_id=HeroInfo.objects.get(pk=id).hbook.id
+        HeroInfo.objects.get(pk=id).delete()
 
+        return HttpResponseRedirect('/detail/'+str(book_id)+'/')
+    except:
+        return HttpResponse('删除失败')
