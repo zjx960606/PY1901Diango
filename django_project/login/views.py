@@ -106,11 +106,11 @@ def gaiherohand(request):
     # hgender = request.POST['sex']
     hcontent = request.POST['hcontent']
 
-    bk = BookInfo.objects.get(pk=kid)
+    # bk = BookInfo.objects.get(pk=kid)
     hero = HeroInfo.objects.get(pk=kid)
     hero.hname = hname
     hero.hgender = True
     hero.hcontent = hcontent
-    hero.hbook = bk
+    # hero.hbook = bk
     hero.save()
-    return HttpResponseRedirect('/detail/' + str(kid) + '/', {'book': bk})
+    return HttpResponseRedirect('/detail/' + str(kid) + '/')
