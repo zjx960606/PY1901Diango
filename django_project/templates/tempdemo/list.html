@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表页</title>
+</head>
+<body>
+<ul>
+    {% for book in book%}
+    {#<li><a href="/index/detail/{{book.id}}">{{book.bname}}------{{book.btitle}}</a> </li>#}
+
+    <li><a href="{% url 'login:detail' book.id%}">{{book.bname}}------{{book.btitle}}</a>
+        <a href="{% url 'login:delete' book.id%}">删除</a>
+        <a href="{% url 'login:gaibook' book.id%}">编辑</a>
+
+
+    </li>
+
+    {% empty %}
+    <h3>没有图书信息</h3>
+    {% endfor %}
+    <a href="{% url 'login:addbook' %}">添加</a>
+    <li><a href="{% url 'login:index' %}">返回首页</a> </li>
+</ul>
+</body>
+</html>

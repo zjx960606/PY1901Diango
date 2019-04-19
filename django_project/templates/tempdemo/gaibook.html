@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑书籍</title>
+</head>
+<body>
+<form action="{% url 'login:gaibookhand' %}" method="post">
+    书籍名称：<input type="text" name="bname">
+    <br>
+    书籍描述：<input type="text" name="btitle">
+    <br>
+    <input type="hidden" name="bid" value="{{sid}}">
+    提交：<input type="submit">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加角色</title>
+    {% load static from staticfiles %}
+     <link rel="stylesheet" href="{% static '/css/main.css' %}">
+</head>
+<body>
+   <div class="cont">
+        <form action="{% url 'login:addherohand' %}" method="post">
+
+
+        角色名称：<input type="text" name="hname" >
+        角色性别：男<input type="radio" name="sex" value="1" checked> 女<input type="radio" name="sex" value="0">
+        角色描述：<input type="text" name="hcontent" >
+        <input type="hidden" name="bookid" value="{{bookid}}">
+        提   交：<input type="submit">
+    </form>
+   </div>
+
+</body>
+</html>
