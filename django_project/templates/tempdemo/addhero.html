@@ -3,21 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>添加角色</title>
-    {% load static from staticfiles %}
-     <link rel="stylesheet" href="{% static '/css/main.css' %}">
+   <link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script src="../../static/js/jQury/js/JQ/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-   <div class="cont">
-        <form action="{% url 'login:addherohand' %}" method="post">
+   <!--<div class="cont">-->
+        <!--<form action="{% url 'login:addherohand' %}" method="post">-->
 
 
-        角色名称：<input type="text" name="hname" >
-        角色性别：男<input type="radio" name="sex" value="1" checked> 女<input type="radio" name="sex" value="0">
-        角色描述：<input type="text" name="hcontent" >
-        <input type="hidden" name="bookid" value="{{bookid}}">
-        提   交：<input type="submit">
-    </form>
-   </div>
+        <!--角色名称：<input type="text" name="hname" >-->
+        <!--角色性别：男<input type="radio" name="sex" value="1" checked> 女<input type="radio" name="sex" value="0">-->
+        <!--角色描述：<input type="text" name="hcontent" >-->
+        <!--<input type="hidden" name="bookid" value="{{bookid}}">-->
+        <!--提   交：<input type="submit">-->
+    <!--</form>-->
+   <!--</div>-->
+
+
+<nav class="navbar navbar-default navbar-static-top">
+		    <div class="container">
+			  <ul class="nav nav-pills"	>
+
+			  <li role="presentation" class="active"><a href="{% url 'login:index' %}">首页</a></li>
+			   <li role="presentation" ><a href="{% url 'login:index' %}">名著</a></li>
+			    <li role="presentation" ><a href="{% url 'login:index' %}">小说</a></li>
+				 <li role="presentation"><a href="{% url 'login:index' %}">励志</a></li>
+
+
+			  <li role="presentation" style="float: right;"><a href="{% url 'login:login1' %}">登录</a></li>
+			  <li role="presentation" style="float: right;"><a href="{% url 'login:login1' %}">注册</a></li>
+
+			</ul>
+		  </div>
+		</nav>
+
+
+
+
+<div class="container" style="border:1px solid moccasin; background-color: #C7DDEF;height: 800px;">
+			<h1 style="margin-left: 380px;">欢迎来到增加界面</h1>
+			<form class="form-horizontal" style="margin-top: 200px; margin-left: 260px;"
+                  action="{% url 'login:addherohand' %}" method="post">
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">角色名称：</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="hname" placeholder="角色名称：">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">角色性别：</label>
+                  <div class="col-md-4">
+                    男<input type="radio" class="form-control" name='sex' value="1">
+                    女<input type="radio" class="form-control" name="sex" value="0">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">角色描述：</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name='hcontent'   placeholder="角色描述：">
+                  </div>
+                </div>
+
+
+
+                 <div class="form-group">
+                  <label  class="col-sm-2 control-label"></label>
+                  <div class="col-md-4">
+                    <input type="hidden" class="form-control" name="bookid"  value="{{bookid}}">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label"></label>
+                  <div class="col-md-4">
+                    <input type="hidden" class="form-control" name="kid"  value="{{kid}}">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" style="margin-left: 50px;">确定</button>
+                  </div>
+                </div>
+            </form>
+    </div>
+
 
 </body>
 </html>

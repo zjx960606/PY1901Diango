@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse,redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import BookInfo, HeroInfo
 from django.template import loader
@@ -11,7 +11,22 @@ from django.template import loader
 
 
 def index(request):
-    return render(request, 'tempdemo/index.html', {'username': 'zjx'})
+    print(request.session.get('username'))
+    return render(request, 'tempdemo/index.html', {'username':request.session.get('username')})
+
+def login1(request):
+    if request.method == 'GET':
+        return render(request,'tempdemo/login1.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        request.session['username'] = username
+        request.session['password'] = password
+        return redirect(reverse('login:index'))
+
+def loginout(request):
+    request.session.clear()
+    return redirect('login:index')
 
 
 def list(request):
@@ -23,6 +38,7 @@ def list(request):
 def detail(request, id):
     book = BookInfo.objects.get(pk=id)
     return render(request, 'tempdemo/detail.html', {"book": book})
+
 
 
 def delete(request, id):
@@ -54,7 +70,7 @@ def addherohand(request):
     hero.hcontent = hcontent
     hero.hbook = book
     hero.save()
-    return HttpResponseRedirect('/detail/' + str(bookid) + '/', {'book': book})
+    return HttpResponseRedirect('/detail/' + str(bookid) + '/', {'book':book})
 
 
 def deletehero(request, id):
@@ -102,6 +118,7 @@ def gaihero(request, gid):
 
 def gaiherohand(request):
     kid = request.POST['kid']
+
     hname = request.POST['hname']
     # hgender = request.POST['sex']
     hcontent = request.POST['hcontent']

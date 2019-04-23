@@ -23,4 +23,7 @@ urlpatterns = [
 
     url(r'gaihero/(\d+)/$', views.gaihero, name='gaihero'),
     url(r'gaiherohand/$',views.gaiherohand, name='gaiherohand'),
+
+    url(r'login1/$', views.login1, name='login1'),
+    url(r'loginout/$', views.loginout, name='loginout'),
 ]

@@ -3,24 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>列表页</title>
+	
+	<link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script src="../../static/js/jQury/js/JQ/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<ul>
-    {% for book in book%}
-    {#<li><a href="/index/detail/{{book.id}}">{{book.bname}}------{{book.btitle}}</a> </li>#}
-
-    <li><a href="{% url 'login:detail' book.id%}">{{book.bname}}------{{book.btitle}}</a>
-        <a href="{% url 'login:delete' book.id%}">删除</a>
-        <a href="{% url 'login:gaibook' book.id%}">编辑</a>
 
 
-    </li>
-
-    {% empty %}
-    <h3>没有图书信息</h3>
-    {% endfor %}
-    <a href="{% url 'login:addbook' %}">添加</a>
-    <li><a href="{% url 'login:index' %}">返回首页</a> </li>
-</ul>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+		  <ul class="nav nav-pills" style="margin-left: 140px;">
+		  <li role="presentation" class="active"><a href="{% url 'login:index' %}">首页</a></li>
+		   <li role="presentation" ><a href="{% url 'login:index' %}">名著</a></li>
+			<li role="presentation" ><a href="{% url 'login:index' %}">小说</a></li>
+			 <li role="presentation"><a href="{% url 'login:index' %}">励志</a></li>
+		  {% if username %}
+		   <li role="presentation" style="float: right;"><a href="{% url 'login:index' %}">退出</a></li>
+		  <li role="presentation" style="float: right;"><a href="{% url 'login:list' %}">个人收藏</a></li>
+		  <li role="presentation" style="float: right;"><a href="#">你好</a></li>
+		  <li role="presentation" style="float: right;"><a href="#">{{username}}</a></li>
+		  {% else%}
+		  <li role="presentation" style="float: right;"><a href="#">登录</a></li>
+		  <li role="presentation" style="float: right;"><a href="#">注册</a></li>
+		   {% endif %}
+		</ul>
+	  </div>
+	</nav>
+		
+		<div class="container" style="border:1px solid moccasin; background-color: #C7DDEF;height: 800px;">
+			<h1 style="margin-left: 380px;">欢迎来到收藏列表</h1>
+		<div class="table-responsive" style="margin-top: 200px;">
+        <table class="table table-bordered table-condensed table-striped table-hover">
+            <tr>
+                <th>编号</th>
+                <th>书名</th>
+                <th>简介</th>
+                
+				<th>操作</th>
+            </tr>
+            {% for book in book %}
+                <tr class="success">
+                    <td>{{ book.id }}</td>
+					<td>  <a href="{% url 'login:detail' book.id%}"> {{ book.bname }}</a> </td> 
+                    <td>{{ book.btitle }}</td>
+                    
+					
+                    <td>
+                        <button type="button" class="btn-xs btn-warning">
+                            <!-- <a href="#">修改</a> -->
+							 <a href="{% url 'login:delete' book.id%}">删除</a>
+                        </button>
+                        <button type="button" class="btn-xs btn-danger">
+                            <a href="{% url 'login:gaibook' book.id%}">编辑</a>
+                        </button>
+                    </td>
+                </tr>	
+				
+            {% endfor %}
+			 <button type="button" class="btn-xs btn-warning" >
+			    <!-- <a href="#">修改</a> -->
+				 <a href="{% url 'login:addbook' %}">添加</a>
+			</button>
+        </table>
+    </div>
+		</div>
 </body>
 </html>

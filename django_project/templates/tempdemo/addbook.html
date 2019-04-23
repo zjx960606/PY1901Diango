@@ -3,15 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>增加书籍</title>
+     <link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script src="../../static/js/jQury/js/JQ/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<form action="{% url 'login:addbookhand' %}" method="post">
-    书籍名称：{{}}<input type="text" name="bname">
-    <br>
-    书籍描述：<input type="text" name="btitle">
-    <br>
-    提交：<input type="submit">
-</form>
+<!--<form action="{% url 'login:addbookhand' %}" method="post">-->
+    <!--书籍名称：<input type="text" name="bname">-->
+    <!--<br>-->
+    <!--书籍描述：<input type="text" name="btitle">-->
+    <!--<br>-->
+    <!--提交：<input type="submit">-->
+<!--</form>-->
 
+
+
+        <nav class="navbar navbar-default navbar-static-top">
+		    <div class="container">
+                <ul class="nav nav-pills"	>
+
+                <li role="presentation" class="active"><a href="{% url 'login:index' %}">首页</a></li>
+                <li role="presentation" ><a href="{% url 'login:index' %}">名著</a></li>
+                <li role="presentation" ><a href="{% url 'login:index' %}">小说</a></li>
+                <li role="presentation"><a href="{% url 'login:index' %}">励志</a></li>
+
+
+                <li role="presentation" style="float: right;"><a href="{% url 'login:login1' %}">登录</a></li>
+                <li role="presentation" style="float: right;"><a href="{% url 'login:login1' %}">注册</a></li>
+
+                </ul>
+		    </div>
+		</nav>
+
+
+        <div class="container" style="border:1px solid moccasin; background-color: #C7DDEF;height: 800px;">
+			<h1 style="margin-left: 380px;">增加书籍界面</h1>
+			<form class="form-horizontal" style="margin-top: 200px; margin-left: 260px;"
+                  action="{% url 'login:addbookhand' %}" method="post">
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">书籍名称：</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="bname" placeholder="书籍名称：">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">书籍描述：</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name='btitle'   placeholder="书籍描述：">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" style="margin-left: 50px;">确定</button>
+                  </div>
+                </div>
+            </form>
+    </div>
 </body>
 </html>
