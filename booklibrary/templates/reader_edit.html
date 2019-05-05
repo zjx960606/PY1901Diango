@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+{% block title %}文本编辑{% endblock %}
+
+{% block css %}
+
+<script src="/static/tiny_mce/tiny_mce.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	tinyMCE.init({
+	'mode':'textareas',
+	'theme':'advanced',
+	'width': 680,
+	'height':400,
+	});
+	</script>
+
+{% endblock %}
+
+{% block body %}
+<form action="{% url 'bookapp:edit' %}" method="post">
+	{% csrf_token %}
+	title <input type="text" name="title">
+	<br>
+	massage <textarea name="massage"></textarea>
+	<br>
+	<input type="submit"  value="提交" />
+		
+</form>
+
+{% endblock %}

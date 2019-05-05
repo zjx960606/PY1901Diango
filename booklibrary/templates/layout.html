@@ -1,0 +1,26 @@
+<!doctype html>
+<title> {% block title %} 图书管理系统 {% endblock %} </title>
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script src="/static/js/jQury/js/JQ/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+
+<link rel=stylesheet type=text/css href="/static/style.css">
+{% block css %}
+
+{% endblock %}
+
+
+<div class=page>
+  <h1>图书管理系统</h1>
+  <div class=navigation>
+    {% block link %}{% endblock %}
+  </div>
+  <div class=body>
+    {% block body %}{% endblock %}
+   </div>
+  <div class=footer>
+     &mdash; 河南牧业经济学院
+  </div>
+</div>
+    

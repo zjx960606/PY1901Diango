@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}登录{% endblock %}
+{% block css %}
+<script src="/static/js/jQury/js/JQ/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){
+		$('#username').blur(function(){
+			$.ajax({
+				url:'/bookapp/checkuser/',
+				type:'post',
+				data:{
+					'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+					'username':$('#username').val()
+				},
+				success:function(data){
+					$('#userinfo').text(data);
+				},
+			})
+		})
+	})
+</script>
+{% endblock %}
+{% block body %}
+<h2>登录</h2>
+<form action="{% url 'bookapp:ajaxlogin' %}" method="post">
+	{% csrf_token %}
+	用户名：<input type="text" name="username" id="username"><span id="userinfo"></span>
+	<br>
+	密码：<input type="password" name="password">
+	<br>
+	<input type="submit" value="提交">
+</form>
+
+{% endblock %}
